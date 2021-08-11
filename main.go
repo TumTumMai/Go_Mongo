@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
+	controller "gomongo/Controller"
 	Dbconnet "gomongo/Db.connet"
-	"net/http"
 
 	"github.com/labstack/echo"
 
@@ -23,9 +23,7 @@ func main() {
 	defer Dbconnet.GetDatabase().Disconnect(Dbconnet.GetDatabasectx())
 	fmt.Println(databases)
 
-	e.GET("/items", func(c echo.Context) error {
-		return c.JSON(http.StatusOK, databases)
-	})
+	controller.SetupItemController(e)
 
 	e.Logger.Fatal(e.Start(":8000"))
 

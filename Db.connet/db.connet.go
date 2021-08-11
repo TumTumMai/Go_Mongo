@@ -3,7 +3,6 @@ package Dbconnet
 import (
 	"context"
 	"log"
-	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -14,11 +13,11 @@ var database *mongo.Client
 var datactx context.Context
 
 func Connect() {
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb+srv://root:gc742899@cluster0.mqkff.mongodb.net/TEST?authSource=admin&replicaSet=atlas-fe50vv-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true"))
+	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb+srv://root:gc742899@cluster0.mqkff.mongodb.net/TESTMVC?authSource=admin&replicaSet=atlas-fe50vv-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true"))
 	if err != nil {
 		log.Fatal(err)
 	}
-	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx := context.TODO()
 	err = client.Connect(ctx)
 	if err != nil {
 		log.Fatal(err)
